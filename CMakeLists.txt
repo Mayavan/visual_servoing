@@ -10,6 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   visualization_msgs
   moveit_ros_planning_interface
+  tf
 )
 
 include_directories(${catkin_INCLUDE_DIRS})
@@ -45,3 +46,6 @@ add_dependencies(path_planning_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(path_planning_node ${catkin_LIBRARIES})
+
+add_executable(camera_tf_broadcaster src/camera_tf_broadcaster.cpp)
+target_link_libraries(camera_tf_broadcaster ${catkin_LIBRARIES})

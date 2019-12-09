@@ -5,6 +5,10 @@
   <arg name="x" default="-3.0"/>
   <arg name="y" default="-3.0"/>
   <arg name="z" default="0.0"/>
+
+  <!-- TF broadcaster for Kinect camera-->
+  <node pkg="visual_servoing" type="camera_tf_broadcaster"
+          name="camera_tf_broadcaster" />
   
   <!-- Gazebo Simulation -->
   <include file="$(find visual_servoing)/launch/robot.launch"/>
