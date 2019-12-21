@@ -25,11 +25,9 @@
  * SOFTWARE.
  */
 
-#include "ur5_moveit_perception/getTarget.h"
 #include "ur5_moveit_perception/ur5_control.hpp"
 #include "ros/ros.h"
 
-#include <ur5_moveit_perception/ARMarker.h>
 #include <cstdlib>
 
 int main(int argc, char **argv)
@@ -38,23 +36,10 @@ int main(int argc, char **argv)
  
   // Node Initialization
   ros::NodeHandle n;
-  ros::ServiceClient client = n.serviceClient<ur5_moveit_perception::getTarget>("ar_pose_service");
-
-  // Call service to get the goal position
-  ur5_moveit_perception::getTarget srv;
-  if (client.call(srv))
-  {
-    ROS_INFO_STREAM("Received Position: " << srv.response.msg.pose.pose.position.x << " " << srv.response.msg.pose.pose.position.y << " " << srv.response.msg.pose.pose.position.z);
-  }
-  else
-  {
-    ROS_ERROR("Failed to call service ar_pose_service");
-    return 1;
-  }
 
   // Execute the trajectory
   UR5Control controller;
-  if(!controller.grabFruit(srv.response.msg.pose.pose)) return 1;
+  // if(!controller.grabFruit(srv.response.msg.pose.pose)) return 1;
 
   ros::spin();
   return 0;
